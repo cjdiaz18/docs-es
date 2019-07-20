@@ -3,7 +3,7 @@ goals {
   message <<-MARKDOWN
   Ahora que la estructura está completa, vamos a hacer que el flujo funcione sin problemas.
 
-  Actualmente cuando vas a <http://localhost:3000> ves el mensaje "Welcome aboard".
+  Actualmente cuando vas a <http://localhost:3000> ves el mensaje "Yay! You’re on Rails!".
 
   Sería más fácil usar nuestra aplicación si <http://localhost:3000> fuera directamente a la lista de temas.
 
@@ -16,16 +16,16 @@ steps {
   step "Agrega una ruta raíz" do
     message "Abre el archivo `config/routes.rb` en un editor."
 
-    message "Busca en el archivo **root**, debería estar cerca de la parte superior si estás usando Rails 4."
+    message "Busca o agrega en el archivo **root**, debería estar cerca de la parte superior si estás usando Rails 4."
 
-    message "Descomenta la línea que contiene la instrucción de ejemplo eliminando el `#` delante de él, y cámbialo por `root 'topics#index'`. Cuando hayas terminado la línea debería verse así:"
+    message "Descomenta la línea que contiene la instrucción de ejemplo eliminando el `#` delante de él, y cámbialo por `root 'temas#index'`. Cuando hayas terminado la línea debería verse así:"
 
     source_code :ruby, <<-RUBY
-root 'topics#index'
+root 'temas#index'
     RUBY
 
     em do
-      message "(Los usuarios de Rails 3.x deben agregar `root to: 'topics#index'` y necesitarán eliminar su archivo `public/index.html`)."
+      message "(Los usuarios de Rails 3.x deben agregar `root to: 'temas#index'` y necesitarán eliminar su archivo `public/index.html`)."
     end
   end
 
@@ -37,8 +37,8 @@ root 'topics#index'
 explanation {
 
  message <<-MARKDOWN
-  * `root 'topics#index'` es una ruta de Rails que dice que la dirección 
-    por defecto para tu sitio es `topics#index`. `topics#index` es la página
+  * `root 'temas#index'` es una ruta de Rails que dice que la dirección 
+    por defecto para tu sitio es `temas#index`. `temas#index` es la página
     de la lista de temas (el controlador 'topics' con la acción 'index').
   * Rails routes controla cómo las URLs (direcciones web) coinciden con el código
     en el servidor. Es similar a cómo las direcciones coinciden con las casas 
@@ -55,15 +55,15 @@ explanation {
     $ rake routes
 
         Prefix Verb   URI Pattern                Controller#Action
-        topics GET    /topics(.:format)           topics#index
-               POST   /topics(.:format)           topics#create
-     new_topic GET    /topics/new(.:format)       topics#new
-    edit_topic GET    /topics/:id/edit(.:format)  topics#edit
-         topic GET    /topics/:id(.:format)       topics#show
-               PATCH  /topics/:id(.:format)       topics#update
-               PUT    /topics/:id(.:format)       topics#update
-               DELETE /topics/:id(.:format)       topics#destroy
-          root GET    /                           topics#index
+        topics GET    /temas(.:format)           temas#index
+               POST   /temas(.:format)           temas#create
+     new_tema  GET    /temas/new(.:format)       temas#new
+    edit_tema  GET    /temas/:id/edit(.:format)  temas#edit
+         tema  GET    /temas/:id(.:format)       temas#show
+               PATCH  /temas/:id(.:format)       temas#update
+               PUT    /temas/:id(.:format)       temas#update
+               DELETE /temas/:id(.:format)       temas#destroy
+          root GET    /                           temas#index
   ````
   Aquí se muestran todas las URLs a las que tu aplicación responde. El código que comienza con dos puntos son variables, por lo que :id es el número identificador del registro. El código en paréntesis es opcional.
 
@@ -80,10 +80,10 @@ explanation {
   Abre tu consola de Rails y escribe:
 
     $ rails console
-    >> app.topics_path
+    >> app.temas_path
     => "/topics"
-    >> app.topics_url
-    => "http://www.example.com/topics"
+    >> app.temas_url
+    => "http://www.example.com/temas"
 
   `app` es un objeto especial que representa toda la aplicación.
   A este objeto puedes pedirle las rutas (tal como acabamos de hacer),
